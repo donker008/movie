@@ -4,7 +4,9 @@
       <th>#</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Post Count</th>
       <th>Creator</th>
+      <th>Last update</th>
     </thead>
     <tbody>
       <% if current_user %>
@@ -13,7 +15,9 @@
             <td>#</td>
             <td><%= link_to(group.title, group_path(group)) %></td>
             <td><%= group.description %></td>
+            <td><%= group.posts.count %></td>
             <td><%= group.user.email %></td>
+            <td><%= group.updated_at %></td>
           </tr>
         <% end %>
       <% end %>
