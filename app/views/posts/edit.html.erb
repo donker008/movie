@@ -1,0 +1,10 @@
+<div class="col-md-4 col-md-offset-4">
+  <h2 class=" text-center">编辑文章</h2>
+  <hr>
+  <%= simple_form_for [@group,@post] do |f| %>
+  <div class="form-2">
+        <%= f.input :content, input_html: {class: "form-control"}%>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", data: {disable_width: "Submiting..."}%>
+  <% end %>
+</div>

@@ -1,0 +1,27 @@
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <th>#</th>
+      <th>Content</th>
+      <th>Group</th>
+      <th>Created At</th>
+      <th class="col-span-2"></th>
+    </thead>
+    <tbody>
+      <% if current_user %>
+        <% current_user.posts.each do |post| %>
+        <tr>
+          <td> # </td>
+          <td><%= post.content %></td>
+          <td><%= post.group.title %></td>
+          <td><%= post.created_at %></td>
+          <td>
+            <%= link_to("Edit", edit_group_post_path(post.group,post), class: "btn btn-default")%>
+            <%= link_to("Delete", group_post_path(post.group,post), method: :delete, class: "btn btn-default")%>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
