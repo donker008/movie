@@ -1,0 +1,22 @@
+<div class="col-md-12">
+  <table class="table">
+    <thead>
+      <th>#</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Creator</th>
+    </thead>
+    <tbody>
+      <% if current_user %>
+        <% @current_user.participated_groups.each do |group| %>
+          <tr>
+            <td>#</td>
+            <td><%= link_to(group.title, group_path(group)) %></td>
+            <td><%= group.description %></td>
+            <td><%= group.user.email %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
