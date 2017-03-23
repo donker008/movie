@@ -1,13 +1,16 @@
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar  navbar-inverse" style="border-radius:0px" role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Rail 101</a>
+    <div class="navbar-header" style="padding-left:10px">
+      <a class="navbar-brand" href="/">M+</a>
+      <span class="navbar-text">Home</span>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
       <ul class="nav navbar-nav navbar-right">
+
         <% if !current_user %>
           <li><%= link_to("注册",new_user_registration_path) %></li>
           <li><%= link_to("登录",new_user_session_path) %></li>
@@ -17,10 +20,10 @@
             <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li>
-                <%= link_to("My Groups", account_groups_path ) %>
+                <%= link_to("我的收藏", account_groups_path ) %>
               </li>
               <li>
-                <%= link_to("My Posts", account_posts_path ) %>
+                <%= link_to("我的评论", account_posts_path ) %>
               </li>
               <li>
                 <%= link_to("退出", destroy_user_session_path, method: :delete ) %>
