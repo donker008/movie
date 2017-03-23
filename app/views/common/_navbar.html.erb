@@ -3,7 +3,12 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header" style="padding-left:10px">
       <a class="navbar-brand" href="/"><span class="brandText">M+</span></a>
-      <span class="navbar-text">Home</span>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <%= link_to("主页",root_path) %>
+          </li>
+        </ul>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -12,6 +17,7 @@
       <ul class="nav navbar-nav navbar-right">
 
         <% if !current_user %>
+          <li><%= link_to("创建电影","") %></li>
           <li><%= link_to("注册",new_user_registration_path) %></li>
           <li><%= link_to("登录",new_user_session_path) %></li>
         <% else %>
