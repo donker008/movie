@@ -1,0 +1,60 @@
+<div class="container-fluid no-padding">
+  <div class="row">
+    <div class="col-md-12">
+      <img src="<%= @hotMovie.cover_url %>" class="img-responsive">
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <% @categories.each do |cate| %>
+      <td><%= link_to(cate.title, "")%></td>
+      <% end %>
+    </tr>
+  </tbody>
+
+</table>
+<br />
+
+<table class="table col-md-12">
+<thead>
+  <td><%= link_to("按热度排序","") %></td>
+  <td><%= link_to("按时间排序","") %></td>
+  <td><%= link_to("按评价排序","") %></td>
+</thead>
+<tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td>
+        <div>
+          <div class="row ">
+          <div class="col-md-3">
+            <img src="<%= movie.cover_url %>"/>
+
+            <p>
+              <%= movie.title %>
+            </p>
+          </div>
+          <div class="col-md-9">
+            <p>
+              剧情简介
+            </p>
+            <br />
+            <p>
+              <%= movie.brief %>
+            </p>
+            <br />
+            <%= link_to("收藏","", class:"btn btn-default") %>
+            <%= link_to("评论","", class:"btn btn-default") %>
+          </div>
+        </div>
+        </div>
+
+      </td>
+    </tr>
+  <% end %>
+
+</tbody>
+</table>

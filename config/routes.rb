@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :groups do
-    resources :posts
-    member do
-      post :join
-      post :quit
-    end
+  resources :movies do
+
   end
 
   namespace :account do
-    resources :groups
-    resources :posts
   end
-  root 'groups#index'
+  root 'movies#index'
 end
