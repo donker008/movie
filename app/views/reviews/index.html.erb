@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row ">
   <div class="col-md-3">
     <img src="<%= @movie.cover_url %>"/>
@@ -17,20 +17,20 @@
     </p>
     <br />
     <%= link_to("收藏","", class:"btn btn-default") %>
-    <%= link_to("评论","", class:"btn btn-default") %>
+    <%= link_to("评论",new_movie_review_path(@movie), class:"btn btn-default") %>
   </div>
 </div>
 
-  <table class="table col-md-12">
-    <tbody>
-      <% @reviews.each do |review| %>
-      <tr>
-        <td>
-          <%= review.user.email %> 看过 <%= review.updated_at %> <br/>
-          <%= review.content %>
-        </td>
-      </tr>
-      <% end %>
+<table class="table col-md-12">
+  <tbody>
+    <% @reviews.each do |review| %>
+    <tr>
+      <td>
+        <%= review.user.email %> 看过 <%= review.updated_at %> <br/>
+        <%= review.content %>
+      </td>
+    </tr>
+    <% end %>
 
-    </tbody>
-  </table>
+  </tbody>
+</table>
