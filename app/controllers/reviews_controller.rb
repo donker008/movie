@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
+
   def index
     @reviews = Review.all
     @movie = Movie.find(params[:movie_id])
@@ -22,6 +24,10 @@ class ReviewsController < ApplicationController
       flash[:error] = "Review failed!"
       render :new
     end
+
+  end
+
+  def destroy
 
   end
 
