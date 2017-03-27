@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
-    @reviews = Review.all
+    @reviews = Review.all.order("updated_at desc")
     @movie = Movie.find(params[:movie_id])
   end
 
