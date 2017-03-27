@@ -17,19 +17,9 @@
       </p>
       <br />
       <%= link_to("收藏","", class:"btn btn-default") %>
+      <%= link_to("评论",new_movie_review_path(@movie), class:"btn btn-default") %>
     </div>
 
 </div>
 <br />
-</div>
-
-
-<div class="col-md-4 col-md-offset-4">
-  <hr>
-  <%= simple_form_for [@movie,@review] do |f| %>
-  <div class="form-2">
-        <%= f.input :content, input_html: {class: "form-control"}%>
-  </div>
-  <%= f.submit "Submit", class: "btn btn-primary", data: {disable_width: "Submiting..."}%>
-  <% end %>
 </div>

@@ -1,27 +1,5 @@
-<div class="container">
-  <div class="row ">
-  <div class="col-md-3">
-    <img src="<%= @movie.cover_url %>"/>
-
-    <p>
-      <%= @movie.title %>
-    </p>
-  </div>
-  <div class="col-md-9">
-    <p>
-      剧情简介
-    </p>
-    <br />
-    <p>
-      <%= @movie.brief %>
-    </p>
-    <br />
-    <%= link_to("收藏","", class:"btn btn-default") %>
-    <%= link_to("评论","", class:"btn btn-default") %>
-  </div>
-</div>
-</div>
-
+<%= params.inspect %>
+<%= render "movieinfo" %>
 <table class="table col-md-12">
   <tbody>
     <% @reviews.each do |review| %>
