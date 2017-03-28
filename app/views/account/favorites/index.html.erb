@@ -1,11 +1,10 @@
 <div class="container">
-  <table class="table">
+  <table class="table table-hover">
     <thead>
       <th>Cover</th>
       <th>Name</th>
       <th>Brief</th>
-      <th span="2">Creator</th>
-
+      <th colspan="3">Creator</th>
     </thead>
     <tbody>
       <% if @favorites %>
@@ -16,14 +15,14 @@
           <td><%= favorite.movie.title %></td>
           <td><%= favorite.movie.brief %></td>
           <td><%= favorite.user.email %></td>
-          <td><%=  link_to("un-favorite",account_favorite_unfavorite_path(favorite), method: :post) %></td>
+          <td><%=  link_to("un-favorite",account_favorite_unfavorite_path(favorite), method: :post, class:"btn btn-primary") %></td>
         </tr>
       <% end %>
+
+      <% else %>
       <tr>
         <td><h2>NO FAVORITES</h2></td>
       </tr>
-      <% else %>
-
       <%end %>
 
 
