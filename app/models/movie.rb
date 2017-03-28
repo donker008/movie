@@ -5,4 +5,6 @@ belongs_to :user
 belongs_to :category
 has_many   :reviews
 has_many   :favorites
+
+scope :recent, ->{ order ("created_at desc")}
 end

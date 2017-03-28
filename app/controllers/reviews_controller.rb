@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :favoriteIt]
 
   def index
-    @reviews = Review.all.order("updated_at desc")
+    @reviews = Review.where(movie_id:params[:movie_id])
     @movie = Movie.find(params[:movie_id])
   end
 
@@ -31,7 +31,7 @@ class ReviewsController < ApplicationController
 
   end
 
-  
+
 
   private
 
