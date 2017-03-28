@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-md-12">
       <% if @hotMovie.featurecoverurl %>
-      <img src="<%= @hotMovie.featurecoverurl %>" class="img-responsive">
+      <%= link_to(image_tag(@hotMovie.featurecoverurl), movie_reviews_path(@hotMovie)) %>
       <% else %>
-      <img src="<%= @hotMovie.cover_url %>" class="img-responsive">
+      <%= link_to(image_tag(@hotMovie.cover_url), movie_reviews_path(@hotMovie)) %>
       <% end %>
     </div>
   </div>
@@ -47,12 +47,11 @@
       <td>
         <div>
           <div class="row ">
-          <div class="col-md-1">
-            <img src="<%= movie.cover_url %>" width="120"/>
-
-            <p>
+          <div class="col-md-1 center-block">
+            <%= link_to(image_tag(movie.cover_url, height:200), movie_reviews_path(movie)) %>
+            <div>
               <%= movie.title %>
-            </p>
+            </div>
           </div>
           <div class="col-md-9 col-md-offset-1">
             <p>

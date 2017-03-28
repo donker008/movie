@@ -24,7 +24,6 @@ class MoviesController < ApplicationController
       @categories = Category.all
 
       if nil == @movies || 0 == @movies.size
-        # @movies = Movie.all
           @hotMovie = Movie.all.first
       end
 

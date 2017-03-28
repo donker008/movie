@@ -10,7 +10,7 @@
       <% if @favorites %>
       <% @favorites.each do |favorite| %>
         <tr>
-          <td><img src="<%= favorite.movie.cover_url %>" height="100"/></td>
+          <td><%=link_to(image_tag(favorite.movie.cover_url , height:100), movie_reviews_path(favorite.movie))%></td>
 
           <td><%= favorite.movie.title %></td>
           <td><%= favorite.movie.brief %></td>
