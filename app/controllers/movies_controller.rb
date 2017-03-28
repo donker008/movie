@@ -5,26 +5,27 @@ class MoviesController < ApplicationController
 
       sort = params[:sort]
       cate_id = params[:category_id]
+      page_count = 5
       if (nil != cate_id && -1 != cate_id.to_i)
         cate = Category.find(cate_id)
         if sort == "hot"
-          @movies = Movie.where(category_id:cate_id).order("view_count desc")
+          @movies = Movie.where(category_id:cate_id).order("view_count desc").paginate(:page => params[:page], :per_page => page_count)
         elsif sort == "review"
-          @movies = Movie.where(category_id:cate_id).order("review_count desc")
+          @movies = Movie.where(category_id:cate_id).order("review_count desc").paginate(:page => params[:page], :per_page => page_count)
         elsif sort == "time"
-          @movies = Movie.where(category_id:cate_id).order("created_at desc")
+          @movies = Movie.where(category_id:cate_id).order("created_at desc").paginate(:page => params[:page], :per_page => page_count)
         else
-          @movies = Movie.where(category_id:cate_id).order("created_at desc")
+          @movies = Movie.where(category_id:cate_id).order("created_at desc").paginate(:page => params[:page], :per_page => page_count)
         end
       else
         if sort == "hot"
-          @movies = Movie.all.order("view_count desc")
+          @movies = Movie.all.order("view_count desc").paginate(:page => params[:page], :per_page => page_count)
         elsif sort == "review"
-          @movies = Movie.all.order("review_count desc")
+          @movies = Movie.all.order("review_count desc").paginate(:page => params[:page], :per_page => page_count)
         elsif sort == "time"
-          @movies = Movie.all.order("created_at desc")
+          @movies = Movie.all.order("created_at desc").paginate(:page => params[:page], :per_page => page_count)
         else
-          @movies = Movie.all.order("created_at desc")
+          @movies = Movie.all.order("created_at desc").paginate(:page => params[:page], :per_page => page_count)
         end
       end
 
