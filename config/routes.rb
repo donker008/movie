@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     resources :favorites do
       post :unfavorite
     end
+
+    resources :reviews
+     
   end
   root 'movies#index'
 end
