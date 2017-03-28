@@ -16,11 +16,9 @@ class MoviesController < ApplicationController
       if (nil != cate_id && -1 != cate_id.to_i)
         cate = Category.find(cate_id)
         @movies = Movie.where(category_id:cate_id)
-      elsif -1 == cate_id.to_i
+      else
         @movies = Movie.all
       end
-
-
 
       @hotMovie = @movies.first
       @categories = Category.all
