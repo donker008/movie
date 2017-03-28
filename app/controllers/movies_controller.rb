@@ -14,10 +14,18 @@ class MoviesController < ApplicationController
         elsif sort == "time"
           @movies = Movie.where(category_id:cate_id).order("created_at desc")
         else
-          @movies = Movie.where(category_id:cate_id)
+          @movies = Movie.where(category_id:cate_id).order("created_at desc")
         end
       else
-        @movies = Movie.recent
+        if sort == "hot"
+          @movies = Movie.all.order("view_count desc")
+        elsif sort == "review"
+          @movies = Movie.all.order("review_count desc")
+        elsif sort == "time"
+          @movies = Movie.all.order("created_at desc")
+        else
+          @movies = Movie.all.order("created_at desc")
+        end
       end
 
 
