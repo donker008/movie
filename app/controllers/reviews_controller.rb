@@ -3,7 +3,9 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy, :favoriteIt]
 
   def index
-    @reviews = Review.where(movie_id:params[:movie_id])
+
+
+    @reviews = Review.where(movie_id:params[:movie_id]).paginate(:page => params[:page], :per_page => 10)
     @movie = Movie.find(params[:movie_id])
 
     mv =  Movie.find(params[:movie_id])

@@ -3,7 +3,7 @@ class Account::ReviewsController < ApplicationController
   before_action :authenticate_user!, only:[:index, :destroy]
 
   def index
-      @reviews = Review.where(user_id: current_user.id)
+      @reviews = Review.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 5)
   end
 
   def destroy

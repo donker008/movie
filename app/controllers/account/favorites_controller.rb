@@ -2,7 +2,7 @@ class Account::FavoritesController < ApplicationController
   before_action :authenticate_user! , only:[:index,:favoriteIt,:unfavorite]
 
   def index
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 3)
   end
 
   def unfavorite
