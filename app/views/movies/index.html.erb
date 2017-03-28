@@ -35,6 +35,13 @@
   <td><%= link_to("按评价排序",movies_path({sort: "review"})) %></td>
 </thead>
 <tbody>
+  <% if @movies.empty? %>
+  <tr>
+    <td>
+      <h2> NO MOVIE!</h2>
+    </td>
+  </tr>
+  <% else %>
   <% @movies.each do |movie| %>
     <tr>
       <td>
@@ -64,6 +71,7 @@
 
       </td>
     </tr>
+  <% end %>
   <% end %>
 
 </tbody>
