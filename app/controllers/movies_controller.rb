@@ -73,18 +73,24 @@ class MoviesController < ApplicationController
 
       @movie = Movie.find(params[:movie_id])
       if @movie
-
-  
-        @favorite = Favorite.new
-        @favorite.user = current_user
-        @favorite.movie = @movie
-        if @favorite.save
-          flash[:notice] = "Favorite successful!";
-          redirect_to movies_path
+        @favorite = Favorite.where(user_id: current_user.id, movie_id: @movie.id)
+        if @favorite.blank?
+           @favorite = Favorite.new
+           @favorite.user = current_user
+           @favorite.movie = @movie
+           if @favorite.save
+             flash[:notice] = "Favorite successful!";
+             redirect_to movies_path
+           else
+             flash[:error] = "Favorite movie failed!";
+             redirect_to movies_path
+          end
         else
-          flash[:error] = "Favorite movie failed!";
+          flash[:warning] = "You have already favorite it!";
           redirect_to movies_path
         end
+
+
       else
         flash[:error] = "Movies dont exist!";
         redirect_to movies_path
