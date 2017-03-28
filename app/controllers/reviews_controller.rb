@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :favoriteIt]
 
   def index
     @reviews = Review.all.order("updated_at desc")
@@ -29,6 +29,27 @@ class ReviewsController < ApplicationController
 
   def destroy
 
+  end
+
+  def favoriteIt
+
+    @movie = Movie.find(params[:movie_id])
+    if @movie
+
+      @favorite = Favorite.new
+      @favorite.user = current_user
+      @favorite.movie = @movie
+      if @favorite.save
+        flash[:notice] = "Favorite successful!";
+        redirect_to movie_reviews_path
+      else
+        flash[:error] = "Favorite movie failed!";
+        redirect_to movie_reviews_path
+      end
+    else
+      flash[:error] = "Movies dont exist!";
+      redirect_to movie_reviews_path
+    end
   end
 
   private

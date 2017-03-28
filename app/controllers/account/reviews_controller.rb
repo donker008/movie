@@ -1,13 +1,13 @@
 class Account::ReviewsController < ApplicationController
 
-  before_action :authenticated_user, only:[:index, :destroy]
+  before_action :authenticate_user!, only:[:index, :destroy]
 
   def index
-      @reviews = Review.where(user_id: current_user.user_id)
+      @reviews = Review.where(user_id: current_user.id)
   end
 
   def destroy
-    review = Review.find(params[:review_id])
+    review = Review.find(params[:id])
     if review
       if review.delete
         if review.user == current_user

@@ -16,7 +16,7 @@
         <%= @movie.brief %>
       </p>
       <br />
-      <%= link_to("收藏","", class:"btn btn-default") %>
+      <%= link_to("收藏", movie_favoriteIt_path(@movie), method: :post, class:"btn btn-default") %>
       <%= link_to("评论",new_movie_review_path(@movie), class:"btn btn-default") %>
     </div>
 
