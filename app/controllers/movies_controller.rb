@@ -84,6 +84,7 @@ class MoviesController < ApplicationController
     def favoriteIt
 
       @movie = Movie.find(params[:movie_id])
+      fromHomeRequest = params[:from_movies_index]
       if @movie
         @favorite = Favorite.where(user_id: current_user.id, movie_id: @movie.id)
         if @favorite.blank?
@@ -92,15 +93,19 @@ class MoviesController < ApplicationController
            @favorite.movie = @movie
            if @favorite.save
              flash[:notice] = "Favorite successful!";
-             redirect_to movies_path
            else
              flash[:error] = "Favorite movie failed!";
-             redirect_to movies_path
           end
         else
           flash[:warning] = "You have already favorite it!";
-          redirect_to movies_path
         end
+
+        if fromHomeRequest
+          redirect_to movies_path
+        else
+          redirect_to movie_reviews_path
+        end
+
 
 
       else

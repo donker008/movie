@@ -58,7 +58,7 @@
               <%= movie.brief %>
             </p>
             <br />
-            <%= link_to("收藏", movie_favoriteIt_path(movie), method: :post,  class:"btn btn-default") %>
+            <%= link_to("收藏", movie_favoriteIt_path(movie,{from_movies_index:1}), method: :post,  class:"btn btn-default") %>
             <%= link_to("评论",movie_reviews_path(movie), class:"btn btn-default") %>
           </div>
         </div>

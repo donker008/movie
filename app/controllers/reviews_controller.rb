@@ -16,8 +16,15 @@ class ReviewsController < ApplicationController
 
   def new
     @movie = Movie.find(params[:movie_id])
-    @review = Review.new
-    @review.movie = Movie.find(params[:movie_id])
+    result = Favorite.where(user_id:current_user.id, movie_id:params[:movie_id])
+    if false == result.blank?
+        @review = Review.new
+        @review.movie = Movie.find(params[:movie_id])
+    else
+        flash[:warning] = "You must favorite it before to write a review"
+        redirect_to movie_reviews_path(@movie)
+    end
+
   end
 
   def create
