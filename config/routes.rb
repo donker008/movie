@@ -4,11 +4,17 @@ Rails.application.routes.draw do
   resources :movies do
 
   resources :reviews
+
+  post :favoriteIt
+
   end
 
 
 
   namespace :account do
+    resources :favorites do
+      post :unfavorite
+    end
   end
   root 'movies#index'
 end

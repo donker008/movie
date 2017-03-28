@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <th>Cover</th>
+      <th>Name</th>
+      <th>Brief</th>
+      <th span="2">Creator</th>
+
+    </thead>
+    <tbody>
+      <% if @favorites %>
+      <% @favorites.each do |favorite| %>
+        <tr>
+          <td><img src="<%= favorite.movie.cover_url %>" height="100"/></td>
+
+          <td><%= favorite.movie.title %></td>
+          <td><%= favorite.movie.brief %></td>
+          <td><%= favorite.user.email %></td>
+          <td><%=  link_to("un-favorite",account_favorite_unfavorite_path(favorite), method: :post) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><h2>NO FAVORITES</h2></td>
+      </tr>
+      <% else %>
+
+      <%end %>
+
+
+    </tbody>
+  </table>
+</div>
