@@ -9,6 +9,8 @@ class Account::ReviewsController < ApplicationController
   def destroy
     review = Review.find(params[:id])
     if review
+        @movie = Movie.find(review.movie.id)
+        @movie.decrement(:review_count, 1)
       if review.delete
         if review.user == current_user
           flash[:notice] = "Delete review successful!"

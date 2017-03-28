@@ -1,7 +1,7 @@
 <!-- <%= params.inspect %> -->
 <div class="container-fluid no-padding">
   <% if @hotMovie.featurecoverurl %>
-  <%= link_to(image_tag(@hotMovie.featurecoverurl), movie_reviews_path(@hotMovie)) %>
+  <%= link_to(image_tag(@hotMovie.featurecoverurl, height:200, width:'100%'), movie_reviews_path(@hotMovie)) %>
   <% else %>
   <%= link_to(image_tag(@hotMovie.cover_url, height:200, width:'100%'), movie_reviews_path(@hotMovie)) %>
   <% end %>
@@ -29,7 +29,7 @@
   <td><%= link_to("按评价排序",movies_path({sort: "review"})) %></td>
 </thead>
 <tbody>
-  <% if @movies.empty? %>
+  <% if @movies.blank? %>
   <tr>
     <td>
       <h2> NO MOVIE!</h2>
@@ -41,10 +41,12 @@
       <td>
         <div>
           <div class="row ">
-          <div class="col-md-1 center-block">
+          <div class="col-md-1">
             <%= link_to(image_tag(movie.cover_url, height:200), movie_reviews_path(movie)) %>
-            <div>
-              <%= movie.title %>
+            <div class="center-block">
+              <%= word_wrap(movie.title) %>
+              <br />
+              👀  <%= movie.view_count %> &nbsp;&nbsp; 📝 <%= movie.review_count %>
             </div>
           </div>
           <div class="col-md-9 col-md-offset-1">

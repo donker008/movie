@@ -4,28 +4,32 @@ class MoviesController < ApplicationController
     def index
 
       sort = params[:sort]
-      if sort == "hot"
-        @movies = Movie.all.order("view_count desc")
-      elsif sort == "review"
-        @movies = Movie.all.order("review_count desc")
-      elsif sort == "time"
-        @movies = Movie.all.order("created_at desc")
-      end
-
       cate_id = params[:category_id]
       if (nil != cate_id && -1 != cate_id.to_i)
         cate = Category.find(cate_id)
-        @movies = Movie.where(category_id:cate_id)
+        if sort == "hot"
+          @movies = Movie.where(category_id:cate_id).order("view_count desc")
+        elsif sort == "review"
+          @movies = Movie.where(category_id:cate_id).order("review_count desc")
+        elsif sort == "time"
+          @movies = Movie.where(category_id:cate_id).order("created_at desc")
+        else
+          @movies = Movie.where(category_id:cate_id)
+        end
       else
-        @movies = Movie.all
+        @movies = Movie.recent
       end
 
-      @hotMovie = @movies.first
+
       @categories = Category.all
 
-      if nil == @movies || 0 == @movies.size
-          @hotMovie = Movie.all.first
+      if  @movies.blank?
+          @hotMovie = Movie.recent.first
+      else
+        @hotMovie = @movies.first
       end
+
+      # render plain: params.inspect + @movies.inspect
 
     end
 
