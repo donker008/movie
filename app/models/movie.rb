@@ -1,5 +1,5 @@
 class Movie < ApplicationRecord
-  validates :title , :brief, :category, :cover_url, presence: true
+  validates :title , :brief, :category, :cover_url,:featurecoverurl, presence: true
 
 belongs_to :user
 belongs_to :category
